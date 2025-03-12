@@ -28,8 +28,10 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies
+      - name: Install dependencies (skip Prisma)
         run: npm install
+        env:
+          CI: true  # This will prevent Prisma postinstall from running
 
       - name: Build Next.js app
         run: npm run build
