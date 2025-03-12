@@ -9,6 +9,7 @@ jobs:
   build-test-deploy:
     runs-on: ubuntu-latest
     env:
+      CI: true  # Prevents Prisma from running in CI
       DATABASE_URL: 'https://test_value.com'
       DATABASE_URL_NON_POOLING: 'https://test_value.com'
       NEXTAUTH_SECRET: 'https://test_value.com'
@@ -28,10 +29,8 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies (skip Prisma)
+      - name: Install dependencies
         run: npm install
-        env:
-          CI: true  # This will prevent Prisma postinstall from running
 
       - name: Build Next.js app
         run: npm run build

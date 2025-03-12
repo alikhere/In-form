@@ -5,7 +5,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "postinstall": "npx prisma generate",
+    "postinstall": "if [ \"$CI\" != \"true\" ]; then npx prisma generate; fi",
     "start": "next start",
     "format": "npx prettier --write . --ignore-path .prettierignore --cache",
     "lint": "next lint -- --ignore-path .eslintignore",
