@@ -22,22 +22,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0  # Ensure all files are fetched
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '18'
-          cache: 'npm'  # Cache node_modules for faster builds
 
-      - name: Install dependencies (skip Prisma)
+      - name: Install dependencies
         run: npm install
-        env:
-          CI: true  # Prevent Prisma postinstall from running
 
       - name: Build Next.js app
-        run: npm run build  # ✅ Runs from project root
+        run: npm run build
+
+      # - name: Run tests
+      #   run: npm run test:ci
 
       - name: Call Vercel Deploy Hook
         env:
