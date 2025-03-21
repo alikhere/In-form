@@ -23,3 +23,4 @@ export default function SubmissionsTab({ formId }: { formId: string }) {
     </div>
   );
 }
+
