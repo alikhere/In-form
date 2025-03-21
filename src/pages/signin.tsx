@@ -106,7 +106,7 @@ export default function SimpleCard() {
                         <FormControl id="test-login">
                           <FormHelperText>Want to test the application ? Click on the button below</FormHelperText>
                           <Button size="sm" mt="2" onClick={() => {
-                            form.setFieldValue("email", "test@test.com").catch(err => { console.log(err) })
+                            form.setFieldValue("email", "test-user@test.com").catch(err => { console.log(err) })
                             form.setFieldValue("password", "test@test.com").catch(err => { console.log(err) })
                           }}>
                             Fill Test credentials
