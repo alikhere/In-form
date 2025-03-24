@@ -15,6 +15,7 @@ import {
   Stack,
   Text,
   useColorModeValue,
+  Tooltip, // Added Tooltip component
 } from "@chakra-ui/react";
 
 import { SigninSchema } from "@/utils/ValidationSchema";
@@ -59,7 +60,6 @@ export default function SimpleCard() {
           status: "error",
           title: result?.error ?? "Uh oh! Something went wrong.",
           description: "There was a problem with your request.",
-          // action: <ToastAction altText="Try again">Try again</ToastAction>,
         });
       }
     },
@@ -99,20 +99,33 @@ export default function SimpleCard() {
             >
               <Form className="space-y-4 md:space-y-6">
                 <Stack spacing={4}>
-
                   <Field name="test-login-btn">
                     {({ field, meta, form }: FieldProps) => {
                       return (
                         <FormControl id="test-login">
-                          <FormHelperText>Want to test the application ? Click on the button below</FormHelperText>
-                          <Button size="sm" mt="2" onClick={() => {
-                            form.setFieldValue("email", "test-user@test.com").catch(err => { console.log(err) })
-                            form.setFieldValue("password", "test@test.com").catch(err => { console.log(err) })
-                          }}>
+                          <FormHelperText>
+                            Want to test the application? Click on the button below
+                          </FormHelperText>
+                          <Button
+                            size="sm"
+                            mt="2"
+                            onClick={() => {
+                              form
+                                .setFieldValue("email", "test-user@test.com")
+                                .catch((err) => {
+                                  console.log(err);
+                                });
+                              form
+                                .setFieldValue("password", "test@test.com")
+                                .catch((err) => {
+                                  console.log(err);
+                                });
+                            }}
+                          >
                             Fill Test credentials
                           </Button>
                         </FormControl>
-                      )
+                      );
                     }}
                   </Field>
 
@@ -159,7 +172,13 @@ export default function SimpleCard() {
                       justify={"space-between"}
                     >
                       <Checkbox>Remember me</Checkbox>
-                      <Text color={"teal.400"}>Forgot password?</Text>
+                      <Tooltip
+                        label="This feature will be available soon"
+                        placement="top"
+                        hasArrow
+                      >
+                        <Text color={"teal.400"}>Forgot password?</Text>
+                      </Tooltip>
                     </Stack>
                     <Button
                       type="submit"
@@ -176,7 +195,6 @@ export default function SimpleCard() {
                       void handelOauthSignin("github");
                     }}
                     variant="outline"
-                    // className="text-md flex w-full items-center justify-center gap-4"
                     size="md"
                     leftIcon={<FaGithub />}
                   >
@@ -184,7 +202,7 @@ export default function SimpleCard() {
                   </Button>
 
                   <p className="text-sm font-normal text-neutral-500 dark:text-neutral-400">
-                    Dont have an account yet ?{" "}
+                    Don't have an account yet?{" "}
                     <Link
                       href="/signup"
                       className="font-medium text-black hover:underline dark:text-teal-500"
